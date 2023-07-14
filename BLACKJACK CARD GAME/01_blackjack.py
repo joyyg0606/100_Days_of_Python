@@ -31,7 +31,7 @@ if choice_to_play == 'y':
     if bank >= 5:
         play_again = True
         while play_again == True:
-            deal_price = float(input(f"\n\nBank: ${bank}\nEnter a price you're willing to deal: "))
+            deal_price = float(input(f"\n\nBank: ${bank}\nEnter a price you're willing to deal: $"))
             bank = bank - deal_price
             logo_clear()
 
@@ -57,7 +57,7 @@ if choice_to_play == 'y':
                 print(f"Dealer's first card: {dealer_cards[0]}\n")
                 print(f"Bank: ${bank}   Deal: ${deal_price}")
                 if player_score <= 21:
-                    choice_to_add = input("Type 'y' to get another card, type 'n' to pass: ")
+                    choice_to_add = input("Type 'y' to get another card, type 'n' to pass: ").lower()
                     if choice_to_add == 'y':
                         player_cards.append(random.choice(deck_of_cards))
                         if 11 in player_cards:
@@ -107,10 +107,10 @@ if choice_to_play == 'y':
                 if new_balance_choice == 'y':
                     price_added = float(input("How much would you like to add?  $"))
                     bank += round(price_added, 2)
-                    if bank < 5:
-                        wants_to_add = False
-                        play_again = False
-                        print(f"\nBank: ${bank}\nGame Ended. Insufficient Funds. Come back when you're not this broke loser.\n")
+                if bank < 5:
+                    wants_to_add = False
+                    play_again = False
+                    print(f"\nBank: ${bank}\nGame Ended. Insufficient Funds. Come back when you're not this broke loser.\n")
             else:
                 wants_to_add = False
                 play_again = False
