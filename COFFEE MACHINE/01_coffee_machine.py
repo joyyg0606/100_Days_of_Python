@@ -11,6 +11,11 @@ def is_resource_enough():
                     enough_resources = False
                     print(f"Sorry there is not enough {ingrediant}\n")
                     return
+                
+def calc_left_over_resources():
+    for ingrediant in MENU[user_choice]['ingredients']:
+        resources_left = resources[ingrediant] - MENU[user_choice]['ingredients'][ingrediant]
+        resources[ingrediant] = resources_left
             
 off = False
 while off == False:
@@ -26,10 +31,6 @@ while off == False:
         is_resource_enough()
 
         if enough_resources == True:
-            for ingrediant in MENU[user_choice]['ingredients']:
-                resources_left = resources[ingrediant] - MENU[user_choice]['ingredients'][ingrediant]
-                resources[ingrediant] = resources_left
-
             quarters = int(input("\nPlease insert coins.\nHow many quarters?: "))
             dimes = int(input("How many dimes?: "))
             nickles = int(input("How many nickles?: "))
@@ -39,9 +40,11 @@ while off == False:
             if MENU[user_choice]['cost'] > total_amt:
                 print("\nSorry that's not enough money. Money refunded.\n")
             elif total_amt > MENU[user_choice]['cost']:
+                calc_left_over_resources()
                 Money_in_machine += MENU[user_choice]['cost']
                 change = round((total_amt - MENU[user_choice]['cost']), 2)
                 print(f"\nHere is ${change} in change.\nHere is your {user_choice} ☕ Enjoy!\n")
             else:
+                calc_left_over_resources()
                 Money_in_machine += MENU[user_choice]['cost']
                 print(f"\nHere is your {user_choice} ☕ Enjoy!\n")
