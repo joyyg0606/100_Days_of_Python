@@ -33,9 +33,6 @@ data_dict = data.to_dict()
 print(data_dict)
 
 print(data['temp'].to_list())
-
-avrg_temp = sum(temp_list) / len(temp_list)
-print(avrg_temp)
     
 print(data['temp'].mean())
 
